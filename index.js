@@ -14,16 +14,14 @@ app.use(cors());
 // habilitar express.json
 app.use(express.json({extended: true}));
 
-// puerto de la app
-const port = process.env.port || 4000;
+//habilitar cors
+app.use(cors({ credentials: true, origin: true }));
+app.options("*", cors());
 
-// importar rutas
-app.use('/api/usuarios', require('./routes/usuarios'));
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/proyectos', require('./routes/proyectos'));
-app.use('/api/tareas', require('./routes/tareas'));
+//PUERTO DE LA APP
+const port = process.env.PORT || 4000;
 
-// arrancar la app
-app.listen(port, '0.0.0.0', () => {
-    console.log(`El servidor está funcionando en el puerto ${port}`);
+//ARRANCAR EL SERV.
+app.listen(port, () => {
+    console.log(`serv. corriendo en el puerto ${port} `);
 });
